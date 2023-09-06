@@ -1,4 +1,4 @@
-#!/usr/local/bin/python
+#!/usr/local/bin/python3
 # -*- coding: utf-8 -*-
 
 # <xbar.title>Robinhood</xbar.title>
@@ -6,17 +6,16 @@
 # <xbar.author>Jonathan Grant</xbar.author>
 # <xbar.author.github>jonathangrant</xbar.author.github>
 # <xbar.desc>Shows your total portfolio value.</xbar.desc>
-# <xbar.dependencies>python,Robinhood</xbar.dependencies>
+# <xbar.dependencies>python,robin_stocks</xbar.dependencies>
+
+from robin_stocks import robinhood as me
 
 
-from Robinhood import Robinhood as R
-
-me = R()
-me.login(username="Your Username Here", password="Your Password Here")
-data = me.portfolios()
-start = data.get('equity_previous_close', '0')
-now = data.get('equity', '0')
-color = 'white'
+me.login(username="yourusername", password="yourpassword")
+data = me.profiles.load_portfolio_profile
+start = data("equity_previous_close")
+now = data("equity")
++color = 'white'
 difference = float(now) - float(start)
 if difference > 0:
     color = 'green'
